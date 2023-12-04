@@ -14,17 +14,11 @@ namespace WebApplication1
     {
         void Application_Start(object sender, EventArgs e)
         {
-            // 應用程式啟動時執行的程式碼
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
             Application["OnlineAccount"] = 0;
         }
         void Session_Start(object sender, EventArgs e) 
         {
             Session["LoginState"] = false;
-            Session["PhotoEdit"] ="-1";
-            Session["AlbumName"] = null;
-            Session["AlbumId"] = null;
         }
         void Session_End(object sender, EventArgs e)
         {

@@ -18,20 +18,17 @@ namespace WebApplication1
             {
                 if (Convert.ToBoolean(Session["LoginState"]) == false || Request.QueryString["posts"] == null)
                 {
-                    //Server.Transfer("~/Login.aspx");  //網址URL會有問題
                     Response.Redirect("~/Login.aspx");
                 }
                 if (Request.QueryString["posts"] != null)
                 {
                     Database db = new Database();
-                    if (db.ConnDB())                                                                                                   // 留言區
+                    if (db.ConnDB())                                                                         
                     {
                         string Sql = "SELECT R.UserInforID, U.UserName, A.Appraisal,R.CreateTime,R.ReplyContent from PostInfor as P,AppraisalCategory as A,ReplyInfor as R,UserInfor as U\r\nWHERE P.id=R.PostInforID and  R.AppraisalId=A.Id and R.UserInforID=U.Id and R.PostInforID=@PostInforID";
                         string[] parameterpost = { "@PostInforID" };
                         string[] controlspost = { Request.QueryString["posts"] };
                         SqlDataReader reader = db.CheckUserDB(Sql, parameterpost, controlspost);
-                        //PostPage testobj = new PostPage();   // Reapeater嘗試
-                        //testobj.RepeaterBind(reader);
                         while (reader.Read())
                         {
                             if (reader["UserInforID"].ToString() == Request.Cookies["userID"].Value)
@@ -52,7 +49,7 @@ namespace WebApplication1
                             }
                         }
 
-                        db.readerclose();   //要先關閉才能讓reader物件連接到新的物件    // 主題區
+                        db.readerclose();   
                         Sql = "SELECT A.Categloy,P.Id,P.PostTheme, P.PostContent,P.CreateTime,U.UserName FROM dbo.AritcleCategroy as A, dbo.PostInfor as P,dbo.UserInfor as U Where A.id=P.AritcleCategroyID and P.UserInforID=U.Id and P.Id=@PID";
                         string[] parameter = { "@PID" };
                         string[] controls = { Request.QueryString["posts"] };
@@ -121,12 +118,6 @@ namespace WebApplication1
             ButtonSubmitReply.Visible = false;
             ButtonAddReply.Visible = true;
         }
-
-        //protected void RepeaterBind(SqlDataReader reader)
-        //{
-        //    RepeaterReplays.DataSource = reader;
-        //    RepeaterReplays.DataBind();
-        //}
 
     }
 

@@ -61,8 +61,6 @@ namespace WebApplication1
             }
             reader = cmd.ExecuteReader();
             return reader;
-           // var userNum = cmd.ExecuteScalar(); //傳回第一筆資料的第一行
-           // return userNum;
         }
         public int ReviseDB(string sql,string[] parame=null, object[] controls = null)
         {
@@ -76,7 +74,6 @@ namespace WebApplication1
                 }
             }
             int resultcount=cmd.ExecuteNonQuery();
-            //cmd.Dispose();
             return resultcount;
         }
 

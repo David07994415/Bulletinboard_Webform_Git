@@ -1,8 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" Title="撰寫貼文" MasterPageFile="~/Site.Master" CodeBehind="CreatePost.aspx.cs" Inherits="WebApplication1.CreatePost" %>
-
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <main aria-labelledby="撰寫文章">
-
+﻿
         <h2 class="fw-bold">撰寫文章</h2>
 
         <div class="d-flex flex-column gap-3 mb-3">
@@ -32,12 +28,6 @@
 
      </div>
 
-        <%--        <div>
-            <asp:Label ID="LabelPostDatetime" runat="server" Text="發文時間"></asp:Label>
-            <asp:Label ID="LabelPostDatetimeSQL" runat="server" Text=""></asp:Label>
-
-        </div>--%>
-
 
         <div class="d-flex ms-5">
             <div>
@@ -46,8 +36,5 @@
                 <asp:Button CssClass="btn btn-danger" ID="ButtonReturn" runat="server" Text="返回文章留言板" OnClick="ButtonReturn_Click" CausesValidation="False" />
             </div>
         </div>
-
-    </main>
-</asp:Content>
 
 

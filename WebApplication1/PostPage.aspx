@@ -1,8 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master"  Title="回應文章" CodeBehind="PostPage.aspx.cs" Inherits="WebApplication1.PostPage" %>
-
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <main aria-labelledby="文章主題">
-
+﻿
         <h2 class="fw-bold">文章主題</h2>
 
         <div class="border-bottom border-white border-3 text-bg-dark text-bg-light">
@@ -23,13 +19,6 @@
 
         <div class="mb-3">
     <asp:Literal ID="LiteralReplys" runat="server"></asp:Literal>
-<%--            <asp:Repeater ID="RepeaterReplays" runat="server">    Repeater嘗試
-                        <ItemTemplate>
-                                     <p>ID: <%# Eval("Appraisal") %></p>
-                                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# Eval("UserName") %>'></asp:TextBox>
-                                    <asp:Button ID="UpdateButton" runat="server" Text="編輯"  />
-                        </ItemTemplate>
-            </asp:Repeater>--%>
         </div>
 
         <div class="d-flex justify-content-center">
@@ -57,7 +46,4 @@
                    <asp:Button CssClass="btn btn-warning"  ID="ButtonCancel" runat="server" Text="取消" OnClick="ButtonCancel_Click" CausesValidation="False"  Visible="False" />
             </div>
         </div>
-
-        </main>
-</asp:Content>
 

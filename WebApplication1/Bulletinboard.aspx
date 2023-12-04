@@ -1,12 +1,6 @@
-﻿<%@ Page Title="文章區" Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="Bulletinboard.aspx.cs" Inherits="WebApplication1.Bulletinboard" %>
-
-
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <main aria-labelledby="留言板文章">
-
+﻿
         <h2 class="fw-bold">留言板文章</h2>
         
-<%--        搜尋元件--%>
         <div class="my-3">   
             <asp:Label ID="LabelSearch" runat="server" Text="搜尋類別："></asp:Label>
             <asp:DropDownList ID="DropDownListSearch" runat="server">
@@ -25,6 +19,3 @@
              <asp:Button CssClass="btn btn-success w-50" ID="ButtonCreatePost" runat="server" Text="發表文章" OnClick="ButtonCreatePost_Click" CausesValidation="False" />
         </div>
 
-
-    </main>
-</asp:Content>

@@ -16,7 +16,7 @@ namespace WebApplication1
             {
                 if (Convert.ToBoolean(Session["LoginState"]) == false || Convert.ToInt16(Session["premission"]) != 2)
                 {
-                    Response.Redirect("~/Login.aspx");  // Server.Transfer("~/Login.aspx");  //網址URL會有問題
+                    Response.Redirect("~/Login.aspx"); 
                 }
                 else 
                 {
@@ -40,13 +40,13 @@ namespace WebApplication1
         protected void GridViewAllPost_RowEditing(object sender, GridViewEditEventArgs e)
         {
             GridViewAllPost.EditIndex = e.NewEditIndex; // 切換到編輯模式
-            ShowGridView_DB();   // 不加入這段，會有問題 (資料行變成白色的)
+            ShowGridView_DB();   // 不加入這段，會有問題
         }
 
         protected void GridViewAllPost_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
             GridViewAllPost.EditIndex = -1; // 取消編輯模式
-            ShowGridView_DB();   // 不加入這段，會有問題 (資料行變成白色的)
+            ShowGridView_DB();   // 不加入這段，會有問題
         }
 
         protected void GridViewAllPost_RowUpdating(object sender, GridViewUpdateEventArgs e)

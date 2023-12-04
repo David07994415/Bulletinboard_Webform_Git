@@ -1,10 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" Title="登入" MasterPageFile="~/Site.Master" CodeBehind="Login.aspx.cs" Inherits="WebApplication1.Login" %>
-
-
-
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <main aria-labelledby="登入">
-
+﻿
      <h2 class="fw-bold">登入頁面</h2>
 
     <div class="d-flex flex-column gap-3">
@@ -24,6 +18,3 @@
          </div>
     </div>
 
-
-        </main >
-    </asp:Content>

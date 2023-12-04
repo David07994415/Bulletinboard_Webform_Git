@@ -1,9 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" Title="註冊頁面" MasterPageFile="~/Site.Master" CodeBehind="Register.aspx.cs" Inherits="WebApplication1.Register" %>
-
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <main aria-labelledby="註冊">
-
-    <h2 class="fw-bold">註冊頁面</h2>
+﻿   <h2 class="fw-bold">註冊頁面</h2>
 
     <div class="d-flex flex-column gap-3">
         <div>
@@ -34,5 +29,3 @@
          </div>
        </div>
 
-         </main >
-    </asp:Content>

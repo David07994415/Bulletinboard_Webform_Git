@@ -41,7 +41,6 @@ namespace WebApplication1
 
                             HttpCookie cookieUserID = new HttpCookie("userID");   //創造cookie儲存使用者資料
                             cookieUserID.Value= reader.GetGuid(reader.GetOrdinal("Id")).ToString();
-                            //cookieUserID["userID"] = reader.GetGuid(reader.GetOrdinal("Id")).ToString();
                             Response.Cookies.Add(cookieUserID);
 
                             Session["premission"] = reader["PremissionId"].ToString(); // 儲存權限

@@ -19,18 +19,14 @@ namespace WebApplication1
             {
                 if (Convert.ToBoolean(Session["LoginState"]) == false)
                 {
-                    //Server.Transfer("~/Login.aspx");  //網址URL會有問題
                     Response.Redirect("~/Login.aspx");
                 }
                 if (Convert.ToBoolean(Session["LoginState"]) == true)
                 {
                     Database db = new Database();
                     db.ConnDB();
-                    //string sql = "SELECT COUNT(*) AS PostCount, MAX(R.CreateTime) as LastestReply, A.Categloy,P.Id,P.PostTheme, P.PostContent,P.CreateTime,U.UserName \r\nFROM dbo.AritcleCategroy as A, dbo.PostInfor as P,dbo.UserInfor as U,dbo.ReplyInfor as R \r\nWhere A.id=P.AritcleCategroyID and P.UserInforID=U.Id and R.PostInforID=P.Id\r\nGROUP BY P.Id, P.PostTheme, P.PostContent, P.CreateTime, U.UserName,A.Categloy";
-                    //string sql = "SELECT A.Categloy,P.Id,P.PostTheme, P.PostContent,P.CreateTime,U.UserName FROM dbo.AritcleCategroy as A, dbo.PostInfor as P,dbo.UserInfor as U Where A.id=P.AritcleCategroyID and P.UserInforID=U.Id";
-                    //SqlDataReader reader=db.ShowDB(sql, GridViewPosts);
                     string sqlwleftjoin = "SELECT \r\n    CASE WHEN MAX(R.CreateTime) IS NULL THEN 0 ELSE COUNT(*) END AS PostCount,\r\n    CASE WHEN MAX(R.CreateTime) IS NULL THEN '無' ELSE CONVERT(VARCHAR, MAX(R.CreateTime), 120) END AS LastestReply,\r\n    A.Categloy,\r\n    P.Id,\r\n    P.PostTheme, \r\n    P.PostContent,\r\n    P.CreateTime,\r\n    U.UserName\r\nFROM \r\n    dbo.AritcleCategroy AS A\r\nJOIN \r\n    dbo.PostInfor AS P ON A.id = P.AritcleCategroyID\r\nJOIN \r\n    dbo.UserInfor AS U ON P.UserInforID = U.Id\r\nLEFT JOIN \r\n    dbo.ReplyInfor AS R ON R.PostInforID = P.Id WHERE  P.AuthPostId=1 \r\nGROUP BY \r\n    P.Id, P.PostTheme, P.PostContent, P.CreateTime, U.UserName, A.Categloy";
-                    SqlDataReader reader = db.ShowDB(sqlwleftjoin); //要使用LEFT JOIN才能串接到空的資料 EX: count =0    //control binding參數，reader無法運行
+                    SqlDataReader reader = db.ShowDB(sqlwleftjoin);
 
                     if (reader.HasRows) 
                     {
@@ -44,18 +40,6 @@ namespace WebApplication1
                         }
                     }
                     db.readerclose();
-
-                    //Response.Write(reader.GetString(1));
-                    //LiteralTable.Text = table;
-                    //LiteralTable.Text = "<div>" +
-                    //        "<p>" + "文章主題：" + $"[{reader["A.Categloy"]}]" + " </p>" +
-                    //        "<p>" + "發文者：" + $"{reader["U.UserName"]}" + "\t" + $"[{reader["P.CreateTime"]}]" + " </p>" +
-                    //        "<div>" +
-                    //             "<p>" + "文章內容：" + " </p>" +
-                    //              "<p>" + $"[{reader[" P.PostContent"]}]" + " </p>" +
-                    //        "</div>" +
-                    //        "</div>"; ;
-
                     db.CloseDB();
 
                 }
@@ -79,7 +63,7 @@ namespace WebApplication1
                 string sqlwleft = "SELECT \r\nCASE WHEN MAX(R.CreateTime) IS NULL THEN 0 ELSE COUNT(*) END AS PostCount,\r\nCASE WHEN MAX(R.CreateTime) IS NULL THEN '無' ELSE CONVERT(VARCHAR, MAX(R.CreateTime), 120) END AS LastestReply,\r\nA.Categloy,P.Id, P.PostTheme,  P.PostContent,P.CreateTime,U.UserName \r\nFROM dbo.AritcleCategroy AS A\r\nJOIN dbo.PostInfor AS P ON A.id = P.AritcleCategroyID \r\nJOIN dbo.UserInfor AS U ON P.UserInforID = U.Id \r\nLEFT JOIN dbo.ReplyInfor AS R ON R.PostInforID = P.Id \r\nWhere U.UserName LIKE @username  \r\nGROUP BY P.Id, P.PostTheme, P.PostContent, P.CreateTime, U.UserName, A.Categloy";
                 string[] parar = { "@username" };
                 string[] contorls = { $"%{TextBoxSearch.Text}%" };
-                SqlDataReader reader = db.CheckUserDB(sqlwleft, parar, contorls);  //control binding參數，reader無法運行
+                SqlDataReader reader = db.CheckUserDB(sqlwleft, parar, contorls); 
                 LiteralTable.Text = "";
                 if (reader.HasRows)
                 {
@@ -105,11 +89,11 @@ namespace WebApplication1
             {
                 Database db = new Database();
                 db.ConnDB();
-               // string sql = "SELECT COUNT(*) AS PostCount, MAX(R.CreateTime) as LastestReply, A.Categloy,P.Id,P.PostTheme, P.PostContent,P.CreateTime,U.UserName  FROM dbo.AritcleCategroy as A, dbo.PostInfor as P,dbo.UserInfor as U,dbo.ReplyInfor as R  Where A.id=P.AritcleCategroyID and P.UserInforID=U.Id and R.PostInforID=P.Id and P.PostTheme like @PostTheme GROUP BY P.Id, P.PostTheme, P.PostContent, P.CreateTime, U.UserName,A.Categloy";
+            
                 string sqlwleft = "SELECT \r\nCASE WHEN MAX(R.CreateTime) IS NULL THEN 0 ELSE COUNT(*) END AS PostCount,\r\nCASE WHEN MAX(R.CreateTime) IS NULL THEN '無' ELSE CONVERT(VARCHAR, MAX(R.CreateTime), 120) END AS LastestReply,\r\nA.Categloy,P.Id, P.PostTheme,  P.PostContent,P.CreateTime,U.UserName \r\nFROM dbo.AritcleCategroy AS A\r\nJOIN dbo.PostInfor AS P ON A.id = P.AritcleCategroyID \r\nJOIN dbo.UserInfor AS U ON P.UserInforID = U.Id \r\nLEFT JOIN dbo.ReplyInfor AS R ON R.PostInforID = P.Id \r\nWhere P.PostTheme LIKE @PostTheme and P.AuthPostId=1  \r\nGROUP BY P.Id, P.PostTheme, P.PostContent, P.CreateTime, U.UserName, A.Categloy"; ;
                 string[] parar = { "@PostTheme" };
                 string[] contorls = { $"%{TextBoxSearch.Text}%" };
-                SqlDataReader reader = db.CheckUserDB(sqlwleft, parar, contorls);  //control binding參數，reader無法運行
+                SqlDataReader reader = db.CheckUserDB(sqlwleft, parar, contorls); 
                 LiteralTable.Text = "";
                 if (reader.HasRows)
                 {

@@ -16,7 +16,6 @@ namespace WebApplication1
             {
                 if (Convert.ToBoolean(Session["LoginState"]) == false)
                 {
-                    //Server.Transfer("~/Login.aspx");  //網址URL會有問題
                     Response.Redirect("~/Login.aspx");
                 }
                 else 

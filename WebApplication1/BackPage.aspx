@@ -1,10 +1,4 @@
-﻿<%@ Page Title="後台管理區" MaintainScrollPositionOnPostback="true"  Language="C#" AutoEventWireup="true" MasterPageFile="~/Site.Master" CodeBehind="BackPage.aspx.cs" Inherits="WebApplication1.BackPage" %>
-
-
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <main aria-labelledby="後台管理">
-
-        <h2 class="fw-bold">後台系統</h2>
+﻿     <h2 class="fw-bold">後台系統</h2>
         <div>
             <asp:GridView ID="GridViewAllPost" runat="server" AutoGenerateColumns="False" DataKeyNames="Id" CellSpacing="30" OnRowEditing="GridViewAllPost_RowEditing" OnRowCancelingEdit="GridViewAllPost_RowCancelingEdit" OnRowUpdating="GridViewAllPost_RowUpdating" OnRowDeleting="GridViewAllPost_RowDeleting" CssClass="w-100">
                 <AlternatingRowStyle BackColor="#99CCFF" />
@@ -54,7 +48,4 @@
       
 
         </div>
-<%--        DataKeyNames="Id"--%>
 
-    </main>
-</asp:Content>
